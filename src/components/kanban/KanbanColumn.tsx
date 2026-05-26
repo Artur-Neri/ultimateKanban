@@ -47,7 +47,7 @@ export function KanbanColumn({ column, onEditCard }: KanbanColumnProps) {
         items={column.cards.map((card) => card.id)}
         strategy={verticalListSortingStrategy}
       >
-        <div className="flex flex-1 flex-col gap-3">
+        <div className="flex min-w-0 flex-1 flex-col gap-3">
           {column.cards.map((card) => (
             <KanbanCardItem key={card.id} card={card} onEdit={onEditCard} />
           ))}

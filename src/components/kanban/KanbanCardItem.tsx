@@ -38,39 +38,39 @@ export function KanbanCardItem({ card, onEdit }: KanbanCardItemProps) {
       ref={setNodeRef}
       style={style}
       className={cn(
-        "rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition",
+        "min-w-0 overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition",
         isDragging && "opacity-60 shadow-lg",
       )}
     >
-      <div className="mb-3 flex items-start justify-between gap-2">
+      <div className="mb-3 flex items-start gap-2">
         <button
           type="button"
-          className="mt-0.5 cursor-grab text-slate-400 hover:text-slate-600 active:cursor-grabbing"
+          className="mt-0.5 shrink-0 cursor-grab text-slate-400 hover:text-slate-600 active:cursor-grabbing"
           {...attributes}
           {...listeners}
         >
           <GripVertical className="h-4 w-4" />
         </button>
-        <div className="flex-1">
+        <div className="min-w-0 flex-1">
           <button
             type="button"
             onClick={() => onEdit?.(card)}
-            className="text-left text-sm font-semibold text-slate-900 hover:text-blue-700"
+            className="block w-full text-left text-sm font-semibold text-slate-900 hover:text-blue-700 break-words line-clamp-3"
           >
             {card.title}
           </button>
           {card.description ? (
-            <p className="mt-1 line-clamp-2 text-xs text-slate-500">
+            <p className="mt-1 line-clamp-2 break-words text-xs text-slate-500">
               {card.description.replace(/<[^>]+>/g, "")}
             </p>
           ) : null}
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 text-xs">
+      <div className="flex min-w-0 flex-wrap items-center gap-2 text-xs">
         {card.source === "azure" ? (
           <>
-            <span className="rounded-full bg-sky-100 px-2 py-0.5 font-medium text-sky-800">
+            <span className="max-w-full truncate rounded-full bg-sky-100 px-2 py-0.5 font-medium text-sky-800">
               {card.workItemType}
             </span>
             {card.azureState ? (
