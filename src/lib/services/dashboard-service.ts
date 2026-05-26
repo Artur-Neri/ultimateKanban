@@ -15,7 +15,21 @@ export async function buildDashboardView(): Promise<DashboardProjectGroup[]> {
       continue;
     }
 
-    const cards = board.columns.flatMap((column) => column.cards);
+    const doneColumnIds = new Set(
+      board.columns.filter((column) => column.isDone).map((column) => column.id),
+    );
+
+    const cards = board.columns
+      .flatMap((column) => column.cards)
+      .filter(
+        (card) =>
+          !(card.source === "manual" && doneColumnIds.has(card.columnId)),
+      );
+
+    if (cards.length === 0) {
+      continue;
+    }
+
     const openCount = board.columns
       .filter((column) => !column.isDone)
       .flatMap((column) => column.cards).length;
@@ -27,7 +41,6 @@ export async function buildDashboardView(): Promise<DashboardProjectGroup[]> {
         type: project.type,
       },
       cards,
-      totalCount: cards.length,
       openCount,
     });
   }

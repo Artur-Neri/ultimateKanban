@@ -40,7 +40,6 @@ export type DashboardProjectGroup = {
     type: "MANUAL" | "AZURE_DEVOPS";
   };
   cards: KanbanCard[];
-  totalCount: number;
   openCount: number;
 };
 

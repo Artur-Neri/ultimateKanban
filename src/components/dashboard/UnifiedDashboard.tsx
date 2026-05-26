@@ -34,22 +34,15 @@ export function UnifiedDashboard({ groups }: UnifiedDashboardProps) {
       .filter((group) => group.cards.length > 0);
   }, [groups, search, sourceFilter]);
 
-  const totalCards = groups.reduce((sum, group) => sum + group.totalCount, 0);
   const openCards = groups.reduce((sum, group) => sum + group.openCount, 0);
 
   return (
     <div className="space-y-8">
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="grid gap-4 md:grid-cols-2">
         <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
           <p className="text-sm text-slate-500">Projetos</p>
           <p className="mt-2 text-2xl font-semibold text-slate-900 sm:text-3xl">
             {groups.length}
-          </p>
-        </article>
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-          <p className="text-sm text-slate-500">Demandas totais</p>
-          <p className="mt-2 text-2xl font-semibold text-slate-900 sm:text-3xl">
-            {totalCards}
           </p>
         </article>
         <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
