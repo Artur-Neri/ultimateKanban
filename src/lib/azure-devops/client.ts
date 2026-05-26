@@ -120,6 +120,9 @@ export class AzureDevOpsClient {
         SELECT [System.Id], [System.Title], [System.State], [System.WorkItemType]
         FROM WorkItems
         WHERE [System.TeamProject] = '${projectName.replace(/'/g, "''")}'
+          AND [System.WorkItemType] = 'Product Backlog Item'
+          AND [System.State] <> 'Done'
+          AND [System.State] <> 'Removed'
           AND [System.AssignedTo] CONTAINS '${assignedToEmail.trim().replace(/'/g, "''")}'
         ORDER BY [System.ChangedDate] DESC
       `,

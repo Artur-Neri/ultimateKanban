@@ -73,6 +73,11 @@ export function KanbanCardItem({ card, onEdit }: KanbanCardItemProps) {
             <span className="rounded-full bg-sky-100 px-2 py-0.5 font-medium text-sky-800">
               {card.workItemType}
             </span>
+            {card.azureState ? (
+              <span className="rounded-full bg-slate-100 px-2 py-0.5 font-medium text-slate-700">
+                {card.azureState}
+              </span>
+            ) : null}
             {card.externalUrl ? (
               <a
                 href={card.externalUrl}
