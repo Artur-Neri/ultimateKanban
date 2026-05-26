@@ -3,6 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { KanbanCard } from "@/lib/types";
+import {
+  formatIsoDateToBr,
+  maskBrDateInput,
+  parseBrDateToIso,
+} from "@/lib/utils";
 
 type TaskFormModalProps = {
   projectId: string;
@@ -26,7 +31,7 @@ export function TaskFormModal({
   );
   const [priority, setPriority] = useState(task?.priority ?? "MEDIUM");
   const [dueDate, setDueDate] = useState(
-    task?.dueDate ? task.dueDate.slice(0, 10) : "",
+    task?.dueDate ? formatIsoDateToBr(task.dueDate) : "",
   );
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,12 +42,21 @@ export function TaskFormModal({
     setError(null);
 
     try {
+      let parsedDueDate: string | null = null;
+      if (dueDate.trim()) {
+        const isoDueDate = parseBrDateToIso(dueDate);
+        if (!isoDueDate) {
+          throw new Error("Data inválida. Use o formato dd/mm/aaaa.");
+        }
+        parsedDueDate = new Date(`${isoDueDate}T12:00:00`).toISOString();
+      }
+
       const payload = {
         title,
         description,
         columnId,
         priority,
-        dueDate: dueDate ? new Date(`${dueDate}T12:00:00`).toISOString() : null,
+        dueDate: parsedDueDate,
       };
 
       const response = await fetch(
@@ -154,9 +168,12 @@ export function TaskFormModal({
         <label className="block space-y-2">
           <span className="text-sm font-medium text-slate-700">Data limite</span>
           <input
-            type="date"
+            type="text"
+            inputMode="numeric"
+            placeholder="dd/mm/aaaa"
+            maxLength={10}
             value={dueDate}
-            onChange={(event) => setDueDate(event.target.value)}
+            onChange={(event) => setDueDate(maskBrDateInput(event.target.value))}
             className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500"
           />
         </label>
