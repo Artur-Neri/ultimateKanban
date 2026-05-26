@@ -54,10 +54,10 @@ export function ProjectForm({ mode = "create" }: ProjectFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto max-w-2xl space-y-6 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
+      className="mx-auto w-full max-w-2xl space-y-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-8"
     >
       <div>
-        <h1 className="text-2xl font-semibold text-slate-900">
+        <h1 className="text-xl font-semibold text-slate-900 sm:text-2xl">
           {mode === "create" ? "Novo projeto" : "Editar projeto"}
         </h1>
         <p className="mt-2 text-sm text-slate-500">

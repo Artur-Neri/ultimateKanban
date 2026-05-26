@@ -48,7 +48,7 @@ export default async function ProjectSettingsPage({
           >
             Voltar ao quadro
           </Link>
-          <h1 className="mt-2 text-3xl font-semibold text-slate-900">
+          <h1 className="mt-2 text-2xl font-semibold text-slate-900 sm:text-3xl">
             Configuração: {project.name}
           </h1>
           {googleConnected && isManual ? (
@@ -61,7 +61,7 @@ export default async function ProjectSettingsPage({
         {isManual ? (
           <Suspense
             fallback={
-              <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-8">
                 <p className="text-sm text-slate-500">Carregando configuração...</p>
               </div>
             }

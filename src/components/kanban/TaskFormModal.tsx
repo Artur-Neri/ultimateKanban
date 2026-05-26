@@ -106,10 +106,10 @@ export function TaskFormModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/40 p-0 sm:items-center sm:p-4">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg space-y-4 rounded-2xl bg-white p-6 shadow-xl"
+        className="max-h-[min(92dvh,100%)] w-full max-w-lg space-y-4 overflow-y-auto rounded-t-2xl bg-white p-4 shadow-xl sm:rounded-2xl sm:p-6"
       >
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-slate-900">
@@ -193,22 +193,20 @@ export function TaskFormModal({
           </p>
         ) : null}
 
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
           {isEditing ? (
             <button
               type="button"
               onClick={handleDelete}
-              className="rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50"
+              className="w-full rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 sm:w-auto"
             >
               Excluir
             </button>
-          ) : (
-            <span />
-          )}
+          ) : null}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-60"
+            className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-60 sm:ml-auto sm:w-auto"
           >
             {isSubmitting ? "Salvando..." : "Salvar"}
           </button>

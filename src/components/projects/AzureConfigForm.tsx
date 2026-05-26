@@ -114,7 +114,7 @@ export function AzureConfigForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
+      className="space-y-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-8"
     >
       <div>
         <h2 className="text-xl font-semibold text-slate-900">

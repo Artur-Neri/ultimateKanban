@@ -25,7 +25,9 @@ export default async function ProjectsPage() {
     <AppShell>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-semibold text-slate-900">Projetos</h1>
+          <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
+            Projetos
+          </h1>
           <p className="mt-2 text-sm text-slate-500">
             Gerencie quadros manuais e projetos integrados ao Azure DevOps.
           </p>

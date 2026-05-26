@@ -43,7 +43,7 @@ export function ProjectList({ projects }: ProjectListProps) {
 
   if (projects.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
+      <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-center sm:p-10">
         <p className="text-lg font-medium text-slate-900">
           Nenhum projeto criado ainda
         </p>
@@ -65,12 +65,12 @@ export function ProjectList({ projects }: ProjectListProps) {
       {projects.map((project) => (
         <article
           key={project.id}
-          className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+          className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6"
         >
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-lg font-semibold text-slate-900">
+          <div className="flex items-start justify-between gap-3 sm:gap-4">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h2 className="text-base font-semibold text-slate-900 sm:text-lg">
                   {project.name}
                 </h2>
                 <Badge variant={project.type === "AZURE_DEVOPS" ? "azure" : "manual"}>

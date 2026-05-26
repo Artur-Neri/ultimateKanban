@@ -27,7 +27,7 @@ export function KanbanColumn({ column, onEditCard }: KanbanColumnProps) {
     <section
       ref={setNodeRef}
       className={cn(
-        "flex min-h-[520px] w-80 shrink-0 flex-col rounded-2xl border border-slate-200 bg-slate-100/70 p-4",
+        "flex min-h-[min(520px,70vh)] w-[min(100%,18.75rem)] shrink-0 snap-center flex-col rounded-2xl border border-slate-200 bg-slate-100/70 p-3 sm:min-h-[520px] sm:w-80 sm:p-4",
         isOver && "border-blue-400 bg-blue-50/60",
       )}
     >

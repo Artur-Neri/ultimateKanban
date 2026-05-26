@@ -159,7 +159,7 @@ export function KanbanBoard({
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
-        <div className="flex gap-4 overflow-x-auto pb-4">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-4 sm:mx-0 sm:gap-4 sm:px-0">
           {board.columns.map((column) => (
             <KanbanColumn
               key={column.id}
@@ -171,7 +171,7 @@ export function KanbanBoard({
 
         <DragOverlay>
           {activeCard ? (
-            <div className="w-80">
+            <div className="w-[min(100%,18.75rem)] sm:w-80">
               <KanbanCardItem card={activeCard} />
             </div>
           ) : null}

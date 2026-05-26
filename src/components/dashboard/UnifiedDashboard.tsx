@@ -40,28 +40,28 @@ export function UnifiedDashboard({ groups }: UnifiedDashboardProps) {
   return (
     <div className="space-y-8">
       <section className="grid gap-4 md:grid-cols-3">
-        <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
           <p className="text-sm text-slate-500">Projetos</p>
-          <p className="mt-2 text-3xl font-semibold text-slate-900">
+          <p className="mt-2 text-2xl font-semibold text-slate-900 sm:text-3xl">
             {groups.length}
           </p>
         </article>
-        <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
           <p className="text-sm text-slate-500">Demandas totais</p>
-          <p className="mt-2 text-3xl font-semibold text-slate-900">
+          <p className="mt-2 text-2xl font-semibold text-slate-900 sm:text-3xl">
             {totalCards}
           </p>
         </article>
-        <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
           <p className="text-sm text-slate-500">Em aberto</p>
-          <p className="mt-2 text-3xl font-semibold text-slate-900">
+          <p className="mt-2 text-2xl font-semibold text-slate-900 sm:text-3xl">
             {openCards}
           </p>
         </article>
       </section>
 
-      <section className="flex flex-wrap items-center gap-3">
-        <div className="relative min-w-[240px] flex-1">
+      <section className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <div className="relative min-w-0 flex-1">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <input
             value={search}
@@ -75,7 +75,7 @@ export function UnifiedDashboard({ groups }: UnifiedDashboardProps) {
           onChange={(event) =>
             setSourceFilter(event.target.value as "all" | "manual" | "azure")
           }
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 sm:w-auto"
         >
           <option value="all">Todas as origens</option>
           <option value="manual">Somente manuais</option>
@@ -84,7 +84,7 @@ export function UnifiedDashboard({ groups }: UnifiedDashboardProps) {
       </section>
 
       {filteredGroups.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-center sm:p-10">
           <p className="text-lg font-medium text-slate-900">
             Nenhuma demanda encontrada
           </p>
@@ -97,11 +97,11 @@ export function UnifiedDashboard({ groups }: UnifiedDashboardProps) {
           {filteredGroups.map((group) => (
             <section
               key={group.project.id}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+              className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6"
             >
-              <div className="mb-4 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <h2 className="text-lg font-semibold text-slate-900">
+              <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-3">
+                  <h2 className="text-base font-semibold text-slate-900 sm:text-lg">
                     {group.project.name}
                   </h2>
                   <Badge
@@ -119,7 +119,7 @@ export function UnifiedDashboard({ groups }: UnifiedDashboardProps) {
                 </div>
                 <Link
                   href={`/projects/${group.project.id}`}
-                  className="text-sm font-medium text-blue-700 hover:underline"
+                  className="shrink-0 text-sm font-medium text-blue-700 hover:underline"
                 >
                   Abrir quadro
                 </Link>

@@ -20,10 +20,10 @@ export function ProjectBoardClient({ board }: ProjectBoardClientProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-semibold text-slate-900">
+      <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
               {board.project.name}
             </h1>
             <Badge variant={isManual ? "manual" : "azure"}>
@@ -37,30 +37,30 @@ export function ProjectBoardClient({ board }: ProjectBoardClientProps) {
           ) : null}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
           {!isManual ? (
             <Link
               href={`/projects/${board.project.id}/settings`}
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-white"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-white"
             >
-              <Settings2 className="h-4 w-4" />
-              Configuração Azure
+              <Settings2 className="h-4 w-4 shrink-0" />
+              <span className="truncate">Configuração Azure</span>
             </Link>
           ) : (
             <>
               <Link
                 href={`/projects/${board.project.id}/settings`}
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-white"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-white"
               >
-                <Settings2 className="h-4 w-4" />
-                Google Calendar
+                <Settings2 className="h-4 w-4 shrink-0" />
+                <span className="truncate">Google Calendar</span>
               </Link>
               <button
                 type="button"
                 onClick={() => setShowCreateModal(true)}
-                className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
               >
-                <Plus className="h-4 w-4" />
+                <Plus className="h-4 w-4 shrink-0" />
                 Nova tarefa
               </button>
             </>

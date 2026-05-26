@@ -11,7 +11,7 @@ export default async function HomePage() {
     <AppShell>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-semibold text-slate-900">
+          <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
             Visão unificada
           </h1>
           <p className="mt-2 text-sm text-slate-500">
