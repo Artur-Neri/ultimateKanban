@@ -68,9 +68,18 @@ export function TaskFormModal({
         },
       );
 
-      const result = (await response.json()) as { error?: string };
+      const result = (await response.json()) as {
+        error?: string;
+        calendarSyncWarning?: string;
+      };
       if (!response.ok) {
         throw new Error(result.error ?? "Erro ao salvar tarefa.");
+      }
+
+      if (result.calendarSyncWarning) {
+        alert(
+          `Tarefa salva, mas a sincronização com o Google Calendar falhou: ${result.calendarSyncWarning}`,
+        );
       }
 
       onClose();

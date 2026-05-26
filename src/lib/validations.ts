@@ -39,7 +39,15 @@ export const azureTestSchema = z.object({
   pat: z.string().min(1),
 });
 
+export const googleCalendarConfigSchema = z.object({
+  calendarId: z.string().min(1, "Selecione uma agenda."),
+  calendarSummary: z.string().max(200).optional(),
+});
+
 export type CreateProjectInput = z.infer<typeof createProjectSchema>;
 export type CreateTaskInput = z.infer<typeof createTaskSchema>;
 export type MoveCardInput = z.infer<typeof moveCardSchema>;
 export type AzureConfigInput = z.infer<typeof azureConfigSchema>;
+export type GoogleCalendarConfigInput = z.infer<
+  typeof googleCalendarConfigSchema
+>;

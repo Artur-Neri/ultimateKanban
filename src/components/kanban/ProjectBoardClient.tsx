@@ -47,14 +47,23 @@ export function ProjectBoardClient({ board }: ProjectBoardClientProps) {
               Configuração Azure
             </Link>
           ) : (
-            <button
-              type="button"
-              onClick={() => setShowCreateModal(true)}
-              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-            >
-              <Plus className="h-4 w-4" />
-              Nova tarefa
-            </button>
+            <>
+              <Link
+                href={`/projects/${board.project.id}/settings`}
+                className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-white"
+              >
+                <Settings2 className="h-4 w-4" />
+                Google Calendar
+              </Link>
+              <button
+                type="button"
+                onClick={() => setShowCreateModal(true)}
+                className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+              >
+                <Plus className="h-4 w-4" />
+                Nova tarefa
+              </button>
+            </>
           )}
         </div>
       </div>

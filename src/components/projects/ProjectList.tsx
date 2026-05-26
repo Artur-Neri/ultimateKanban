@@ -95,14 +95,17 @@ export function ProjectList({ projects }: ProjectListProps) {
               )}
             </div>
             <div className="flex gap-2">
-              {project.type === "AZURE_DEVOPS" ? (
-                <Link
-                  href={`/projects/${project.id}/settings`}
-                  className="rounded-lg border border-slate-200 p-2 text-slate-600 hover:bg-slate-50"
-                >
-                  <Settings2 className="h-4 w-4" />
-                </Link>
-              ) : null}
+              <Link
+                href={`/projects/${project.id}/settings`}
+                className="rounded-lg border border-slate-200 p-2 text-slate-600 hover:bg-slate-50"
+                title={
+                  project.type === "AZURE_DEVOPS"
+                    ? "Configuração Azure"
+                    : "Configuração Google Calendar"
+                }
+              >
+                <Settings2 className="h-4 w-4" />
+              </Link>
               <button
                 type="button"
                 onClick={() => handleDelete(project.id)}

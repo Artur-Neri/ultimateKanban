@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createTaskSchema } from "@/lib/validations";
 import { handleApiError, jsonError } from "@/lib/api-utils";
+import { syncTaskWithGoogleCalendar } from "@/lib/services/calendar-sync-service";
 import { db } from "@/lib/db";
 
 type RouteContext = {
@@ -62,6 +63,17 @@ export async function POST(request: Request, context: RouteContext) {
         order,
       },
     });
+
+    let calendarSyncWarning: string | undefined;
+    if (task.dueDate) {
+      const syncResult = await syncTaskWithGoogleCalendar(task);
+      calendarSyncWarning = syncResult.warning;
+      const refreshed = await db.task.findUnique({ where: { id: task.id } });
+      return NextResponse.json(
+        { ...(refreshed ?? task), calendarSyncWarning },
+        { status: 201 },
+      );
+    }
 
     return NextResponse.json(task, { status: 201 });
   } catch (error) {
